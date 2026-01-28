@@ -11,6 +11,8 @@ import se.lexicon.notify.service.MessageService;
 @Service
 public class PersonService {
 
+    // TODO: Expand Service Layer methods
+
     PersonRepository personRepository;
     MessageService<Email> messageService;
 

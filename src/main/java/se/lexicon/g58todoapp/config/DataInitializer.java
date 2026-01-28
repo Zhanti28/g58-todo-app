@@ -40,6 +40,7 @@ public class DataInitializer {
 
 
 
+    //TODO : Experiment with Seeding and updating data?
     private static void seedingData(PersonRepository personRepository, TodoRepository todoRepository) throws IOException {
         Person dev1 = personRepository.save(new Person("Dev1", "dev1@test.se"));
         Person dev2 = personRepository.save(new Person("Dev2", "dev2@test.se"));
