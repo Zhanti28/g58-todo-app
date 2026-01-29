@@ -56,11 +56,11 @@ public class PersonService {
         return personRepository.findById(id).orElseThrow(()-> new PersonNotFoundException("Person not found"));
     }
 
-    // TODO: Update
+    // TODO: Update + Test?
 
-    // TODO: Delete person by id
+    // TODO: Delete person by id + Test?
 
-    // TODO: find by email
+    // TODO: find by email + Test?
 
 
 }
