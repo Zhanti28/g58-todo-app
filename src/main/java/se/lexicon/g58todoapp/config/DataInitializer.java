@@ -27,7 +27,7 @@ public class DataInitializer {
 
            // registerPerson(personService);
 
-//            seedingData(personRepository, todoRepository);
+            seedingData(personRepository, todoRepository);
 
 
         };
