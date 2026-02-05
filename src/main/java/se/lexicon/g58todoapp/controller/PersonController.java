@@ -48,8 +48,9 @@ public class PersonController {
     //POST localhost:8080/api/people
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createPerson(@RequestBody Person person){
-        personService.createPerson(person);
+    public void createPerson(@RequestBody
+                                 @Valid PersonDto personDto) {
+        personService.createPerson(personDto);
     }
 
     //DELETE Localhost:8080/api/people/1

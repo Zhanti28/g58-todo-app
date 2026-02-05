@@ -35,6 +35,7 @@ class PersonServiceTest {
 
 
     private Person person;
+    private PersonDto personDto;
 
     private final Long TEST_ID = 1L;
     private final String TEST_NAME = "Simon Elbrink";
@@ -43,6 +44,7 @@ class PersonServiceTest {
     @BeforeEach
     void setUp() {
         person = new Person(TEST_ID,TEST_NAME, TEST_EMAIL, LocalDate.parse("2026-01-01"), null);
+        personDto = PersonDto.builder().id(TEST_ID).name(TEST_NAME).email(TEST_EMAIL).build();
 
     }
 
@@ -72,7 +74,7 @@ class PersonServiceTest {
         when(personRepository.save(any(Person.class))).thenReturn(person);
 
         //Act
-        personService.createPerson(person);
+        personService.createPerson(personDto);
 
         //Assert
         verify(personRepository).save(any(Person.class));

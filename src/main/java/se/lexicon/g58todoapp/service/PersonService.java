@@ -26,7 +26,10 @@ public class PersonService {
         this.messageService = messageService;
     }
 
-    public void createPerson(Person person) {
+    public void createPerson(PersonDto personDto) {
+
+        Person person = new Person(personDto.name(), personDto.email(),personDto.birthDate());
+
 
         person = personRepository.save(person);
 
@@ -53,13 +56,22 @@ public class PersonService {
     // Finding all from data storage and Converting to DTO
     public List<PersonDto> findAll(){
         return personRepository.findAll().stream()
-                .map(person -> new PersonDto(person.getId(), person.getName(), person.getEmail()))
+                .map(person -> PersonDto.builder()
+                        .id(person.getId())
+                        .name(person.getName())
+                        .email(person.getEmail())
+                        .build())
                 .collect(Collectors.toList());
     }
 
     public PersonDto findById(Long id){
         Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
-        return new PersonDto(person.getId(), person.getName(), person.getEmail());
+        return  PersonDto.builder()
+                .id(person.getId())
+                .name(person.getName())
+                .email(person.getEmail())
+                .birthDate(person.getBirthDate())
+                .build();
     }
 
     public void delete(Long id) {

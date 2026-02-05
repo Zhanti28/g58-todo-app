@@ -3,6 +3,7 @@ package se.lexicon.g58todoapp.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import se.lexicon.g58todoapp.dto.PersonDto;
 import se.lexicon.g58todoapp.entity.Attachment;
 import se.lexicon.g58todoapp.entity.Person;
 import se.lexicon.g58todoapp.entity.Todo;
@@ -35,7 +36,7 @@ public class DataInitializer {
 
     // TODO: See if you can get a email service to work?
     private static void registerPerson(PersonService personService) {
-        personService.createPerson(new Person("Simon", "Actual_Address_Here@lexicon.se"));
+        personService.createPerson(PersonDto.builder().name("Simon").email("Simon@test.com").build());
     }
 
 
