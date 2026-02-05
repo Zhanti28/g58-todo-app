@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import se.lexicon.g58todoapp.dto.PersonDto;
 import se.lexicon.g58todoapp.entity.Person;
-import se.lexicon.g58todoapp.exception.PersonNotFoundException;
+import se.lexicon.g58todoapp.exception.ResourceNotFoundException;
 import se.lexicon.g58todoapp.repo.PersonRepository;
 import se.lexicon.notify.model.Email;
 import se.lexicon.notify.service.MessageService;
@@ -65,7 +65,7 @@ public class PersonService {
     }
 
     public PersonDto findById(Long id){
-        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        Person person = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found with specified id"));
         return  PersonDto.builder()
                 .id(person.getId())
                 .name(person.getName())

@@ -24,3 +24,6 @@ Content-Type: application/json
 
 ### Get by Id - Not okey
 GET localhost:8080/api/people/-65
+
+### Get by Id - Triggers our custom Exceptipon handler 🫡
+GET localhost:8080/api/people/-65
