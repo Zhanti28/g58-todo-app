@@ -26,7 +26,7 @@ class PersonRepositoryTest {
         personRepository.save(person);
 
         // Act
-        var retrievedPerson = personRepository.findByEmail("john.doe@example.com");
+        var retrievedPerson = personRepository.findByEmailIgnoreCase("john.doe@example.com");
 
         // Assert
         assertTrue(retrievedPerson.isPresent());

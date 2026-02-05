@@ -62,11 +62,34 @@ public class PersonService {
         return new PersonDto(person.getId(), person.getName(), person.getEmail());
     }
 
-    // TODO: Update + Test?
+    public void delete(Long id) {
+        personRepository.deleteById(id);
+    }
+    public PersonDto update(Long id, PersonDto personDto) {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Person not found"));
+        person.setName(personDto.name());
+        person.setEmail(personDto.email());
+        Person updated = personRepository.save(person);
+        log.info("Updated person: {}", updated);
 
-    // TODO: Delete person by id + Test?
+        return PersonDto.builder()
+                .id(updated.getId())
+                .name(updated.getName())
+                .email(updated.getEmail())
+                .build();
+    }
+    public PersonDto findByEmail(String email) {
 
-    // TODO: find by email + Test?
+        Person person = personRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new RuntimeException("Person not found"));
+
+        return PersonDto.builder()
+                .id(person.getId())
+                .name(person.getName())
+                .email(person.getEmail())
+                .build();
+    }
 
 
 }
