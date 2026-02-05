@@ -23,3 +23,7 @@
 - CURL commands, terminal example:  ``curl -X GET "http://localhost:8080/api/people"``
 - [Postman - Download](https://www.postman.com/downloads/)
 - [IntelliJ - Http Client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html)
+
+- [Swagger UI w/ OpenaPI](https://springdoc.org/)
+- [Swagger 3 annotations in Spring Boot](https://www.bezkoder.com/swagger-3-annotations/)
+- [Swagger UI](https://swagger.io/tools/swagger-ui/)
