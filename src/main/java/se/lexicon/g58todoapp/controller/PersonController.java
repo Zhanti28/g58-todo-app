@@ -1,14 +1,15 @@
 package se.lexicon.g58todoapp.controller;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import se.lexicon.g58todoapp.dto.PersonDto;
-import se.lexicon.g58todoapp.entity.Person;
 import se.lexicon.g58todoapp.repo.PersonRepository;
 import se.lexicon.g58todoapp.service.PersonService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 //localhost:8080/api/people for all the endpoint in this class.
 @RequestMapping("/api/people")
@@ -26,7 +27,7 @@ public class PersonController {
     //RequestParam = ?name=Simon
     //GET localhost:8080/api/hello?name=Simon
     @RequestMapping(value = "/hello")
-    public String hello (@RequestParam(defaultValue = "from PersonController!") String name) {
+    public String hello(@RequestParam(defaultValue = "from PersonController!") String name) {
         return "Hello, " + name;
     }
 
@@ -41,7 +42,10 @@ public class PersonController {
     //PathVariable = {id}
     //GET localhost:8080/api/people/1
     @GetMapping("/{id}")
-    public PersonDto getPersonById(@PathVariable Long id){
+    public PersonDto getPersonById(
+            @PathVariable
+            @Positive(message = "Person id must be positive")
+            Long id) {
         return personService.findById(id);
     }
 
@@ -49,19 +53,19 @@ public class PersonController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void createPerson(@RequestBody
-                                 @Valid PersonDto personDto) {
+                             @Valid PersonDto personDto) {
         personService.createPerson(personDto);
     }
 
     //DELETE Localhost:8080/api/people/1
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePerson(@PathVariable Long id){
+    public void deletePerson(@PathVariable
+                             @Positive(message = "Person id must be positive")
+                             @NotNull(message = "Person id cannot be null")
+                             Long id) {
         personRepository.deleteById(id);
     }
-
-
-
 
 
 }

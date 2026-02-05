@@ -10,3 +10,17 @@ Content-Type: application/json
     "email": "simon@test.se",
     "birthDate": "2020-01-01"
 }
+
+### Creating a new Person - FAILING
+POST localhost:8080/api/people
+Content-Type: application/json
+
+{
+  "name": "S",
+  "email": "s",
+  "birthDate": "2020-01-01"
+}
+
+
+### Get by Id - Not okey
+GET localhost:8080/api/people/-65
